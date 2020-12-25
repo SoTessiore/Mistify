@@ -1,0 +1,80 @@
+{% extends 'gamesbase.html.twig' %}
+
+{% block title %}Mistify | Vos posts{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/Mistify_ProfilePost.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="marge">
+        <h4>Vos posts</h4><hr>
+        <div class="lignejeux">
+            {% if app.user.getUserPosts|length == 0 %}
+                <div class="bottom">
+                    <h4>Vous n'avez pas encore posté !</h4>
+                    <a href="{{ path('app_post') }}">Postez votre premier jeu !</a>
+                </div>
+            {% else %}
+                {% for post in app.user.getUserPosts %}
+                    <div class="block">
+                        <a href="{{ path('app_viewpost', { postId: post.getId}) }}">
+                            <div class="middle">
+                                <img src="{{ asset('uploads/game_images/' ~ post.getPostImage) }}" alt="pic" />
+                            </div>
+
+                            <div class="bottom"><h5>{{ post.getPostName }}</h5></div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <h4>Vos téléchargements</h4><hr>
+        <div class="lignejeux">
+            {% if downloads|length == 0 %}
+            <div class="bottom">
+                <h4>Vous n'avez pas encore téléchargé de jeu !</h4>
+            </div>
+            {% else %}
+                {% for post in downloads %}
+                    <div class="block">
+                        <a href="{{ path('app_viewpost', { postId: post.getId}) }}">
+                            <div class="middle">
+                                <img src="{{ asset('uploads/game_images/' ~ post.getPostImage) }}" alt="pic" />
+                            </div>
+
+                            <div class="bottom"><h5>{{ post.getPostName }}</h5></div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <h4>Vos likes </h4><hr>
+        <div class="lignejeux">
+            {% if likes|length == 0 %}
+            <div class="bottom">
+                <h4>Vous n'avez pas encore liké de jeu !</h4>
+            </div>
+            {% else %}
+                {% for post in likes %}
+                    <div class="block">
+                        <a href="{{ path('app_viewpost', { postId: post.getId}) }}">
+                            <div class="middle">
+                                <img src="{{ asset('uploads/game_images/' ~ post.getPostImage) }}" alt="pic" />
+                            </div>
+
+                            <div class="bottom"><h5>{{ post.getPostName }}</h5></div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+index:
+  path: /
+  controller: App\Controller\DashboardController::index
+
+login:
+  path: /login
+  controller: App\Controller\LoginController::login
+
+dashboard:
+  path: /home
+  controller: App\Controller\DashboardController::homepage
+
+register:
+  path: /register
+  controller: App\Controller\RegisterController::register
+
+logout:
+  path: /logout
+  controller: App\Controller\LoginController::logout
+
+profile:
+  path: /profile
+  controller: App\Controller\ProfileController::profile

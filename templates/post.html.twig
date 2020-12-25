@@ -1,0 +1,49 @@
+{% extends 'formbase.html.twig' %}
+
+{% block title %}Mistify | Poster un jeu{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style_Posts.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <section id="hero">
+        <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+            <div class="wrapper bg-white mt-sm-5">
+                <div class="formulaire">
+                    {{ form_start(form, {'attr': {'class': 'form-signin'}}) }}
+                        <h2 class="h4 mb-4 font-weight-normal">Poster un jeu</h2>
+                        <div class="form-group">
+                            <label for="first_name"><h5>Image du jeu</h5></label>
+                            {{ form_row(form.post_image, {'attr': {'class': 'text-center center-block file-upload', 'placeholder': 'Image de profil', 'accept': ".jpg, .jpeg, .png"}}) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="first_name"><h5>Nom du jeu</h5></label>
+                            {{ form_row(form.post_name, {'attr': {'class': 'form-control', 'placeholder': 'Tintin au tibet'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name"><h5>Lien de téléchargement</h5></label>
+                            {{ form_row(form.post_download_link, {'attr': {'class': 'form-control', 'placeholder': 'ex.: Lien Google Drive'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name"><h5>Description</h5></label>
+                            {{ form_row(form.post_description, {'attr': {'class': 'form-control', 'placeholder': 'Très bon jeu'}}) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name"><h5>Catégorie</h5></label>
+                            {{ form_row(form.post_category, {'attr': {'class': 'form-control', 'placeholder': 'Image de profil'}}) }}
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block">Poster</button>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

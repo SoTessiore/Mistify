@@ -1,0 +1,50 @@
+{% extends 'formbase.html.twig' %}
+
+{% block title %}Mistify | Modifier le profil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style_ParametreProfil.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <section id="hero">
+        <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+            <div class="wrapper bg-white mt-sm-5">
+                {{ form_start(form) }}
+                    <h4 class="pb-4 border-bottom">Paramètres du Profil</h4>
+                    <div class="d-flex align-items-start py-3 border-bottom">
+                        <div class="block">
+                            {% if(app.user.getUserAvatar == null) %}
+                                <img src="{{ asset('images/avatar.png') }}" class=" img-thumbnail" alt="avatar">
+                            {% else %}
+                                <img src="{{ asset('uploads/avatars/' ~ app.user.getUserAvatar) }}" class=" img-thumbnail" alt="avatar">
+                            {% endif %}
+                        </div>
+                        <div class="pl-sm-4 pl-2" id="img-section">
+                            {{ form_row(form.user_avatar, {'attr': {'class': 'text-center center-block file-upload', 'placeholder': 'Image de profil', 'accept': ".jpg, .jpeg, .png"}}) }}
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <div class="row py-2">
+                            <div class="col-md-6"> {{ form_row(form.user_firstname, {'attr': {'class': 'bg-light form-control', 'placeholder': 'Prénom'}}) }} </div>
+                            <div class="col-md-6 pt-md-0 pt-3"> {{ form_row(form.user_lastname, {'attr': {'class': 'bg-light form-control', 'placeholder': 'Nom'}}) }} </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-6"> {{ form_row(form.user_mail, {'attr': {'class': 'bg-light form-control', 'placeholder': 'Adresse mail'}}) }} </div>
+                            <div class="col-md-6 pt-md-0 pt-3"> {{ form_row(form.user_pseudo, {'attr': {'class': 'bg-light form-control', 'placeholder': 'Pseudo'}}) }} </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-6"> {{ form_row(form.user_born, {'attr': {'class': 'bg-light form-control', 'placeholder': 'Date de naissance'}}) }} </div>
+                        </div>
+                        <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Enregistrer</button></div>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

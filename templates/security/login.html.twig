@@ -1,0 +1,47 @@
+{% extends 'formbase.html.twig' %}
+
+{% block title %}Mistify | Connexion{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style_Connexion.css') }}">
+
+{% endblock %}
+
+{% block body %}
+<section id="hero">
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+        <form method="post" class="form-signin">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <img class="mb-4" src="{{ asset('images/LogoMistify.png') }}" alt="logo" width="85" height="85">
+                <h2 class="h4 mb-4 font-weight-normal">Connexion</h2>
+                <label for="inputUser_pseudo" class="sr-only">Nom d'utilisateur</label>
+                <input type="text" value="{{ last_username }}" name="user_pseudo" id="inputUser_pseudo" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="sr-only">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+            </div>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+
+            <button type="submit" class="btn btn-danger btn-block">Se connecter</button>
+            <div class="inscription mt-4">
+                <a href="{{ path('app_register') }}" target="iframe_a ">Créer un compte</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

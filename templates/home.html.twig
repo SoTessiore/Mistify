@@ -1,0 +1,52 @@
+{% extends 'gamesbase.html.twig' %}
+
+{% block title %}Mistify | Home{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/Mistify_Jeu.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="marge">
+
+            {{ form_start(form) }}
+            <fieldset>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        {{ form_row(form.post_category, {'attr': {'class' : 'custom-select bg-primary text-light'}}) }}
+                    </div>
+                    {{ form_row(form.post_name, {'attr': {'class' : 'form-control', 'placeholder': 'Rechercher'}}) }}
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Rechercher</button>
+                    </div>
+                </div>
+            </fieldset>
+            {{ form_end(form) }}
+    </div>
+
+
+    <div class="lignejeux">
+        {% if(posts|length == 0) %}
+            <div class="bottom"><h6>Aucun jeu ne correspond à vos critères</h6></div>
+        {% else %}
+            {% for post in posts %}
+                <div class="block">
+                    <a href="{{ path('app_viewpost', { postId: post.getId}) }}">
+                        <div class="middle">
+                            <img src="{{ asset('uploads/game_images/' ~ post.getPostImage) }}" alt="pic" />
+                        </div>
+
+                        <div class="bottom"><h5>{{ post.getPostName }}</h5></div>
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}

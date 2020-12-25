@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+<body>
+
+{% block body %}
+
+    <nav class="navbar navbar-expand-md navbar-dark  bg-dark fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('images/LogoMistify.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+            Mistify
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if(app.request.get('_route') == "app_homepage" or app.request.get('_route') == "app_viewpost") %} active {% endif%}">
+                    <a class="nav-link" href="{{ path('app_homepage') }}">Boutique</a>
+                </li>
+                <li class="nav-item {% if(app.request.get('_route') == "app_post") %} active {% endif%}">
+                    <a class="nav-link" href="{{ path('app_post') }}">Poster un jeu</a>
+                </li>
+                <li class="nav-item {% if(app.request.get('_route') == "app_profile" or app.request.get('_route') == "app_editprofile" or app.request.get('_route') == "app_profileposts") %} active {% endif%} dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Profil </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('app_profile') }}">Mon profil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('app_editprofile') }}">Modifier le profil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('app_profileposts') }}">Mes posts</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'formbase.html.twig' %}
+
+{% block title %}Mistify | Profile{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style_Profil.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <section id="hero">
+        <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+            {% if(app.user.getUserAvatar == null) %}
+                <img src="{{ asset('images/avatar.png') }}" width="192" height="192" alt class="ui-w-100 rounded-circle">
+            {% else %}
+                <img src="{{ asset('uploads/avatars/' ~ app.user.getUserAvatar) }}" width="192" height="192" alt class="ui-w-100 rounded-circle">
+            {% endif %}
+            <h4 class="font-weight-bold my-4">{{ app.user.getUserFirstname }} {{ app.user.getUserLastname }}</h4>
+            <a href="{{ path('app_editprofile') }}" class="btn-get-started">Modifier le profil</a>
+            <a href="{{ path('app_profileposts') }}" class="btn-get-started">Mes posts</a>
+            <a href="{{ path('app_logout') }}" class="btn-get-started">Déconnexion</a>
+        </div>
+    </section>
+{% endblock %}

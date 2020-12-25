@@ -1,0 +1,21 @@
+{% extends 'formbase.html.twig' %}
+
+{% block title %}Mistify | Accueil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style_Accueil.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    <section id="hero">
+        <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+            <h1>Bienvenue sur Mistify</h1>
+            <h2>Connectez vous pour accéder à la bibliothèque de jeux</h2>
+            <a href="{{ path('app_login') }}" class="btn-get-started">Connexion</a>
+            <a href="{{ path('app_register') }}" class="btn-get-started">Inscription</a>
+        </div>
+    </section>
+{% endblock %}
+
